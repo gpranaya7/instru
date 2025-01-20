@@ -6,13 +6,12 @@ from rest_framework.response import Response
 from app.models import *
 # Create your views here.
 class UserRegister(APIView):
-    serializer_class=UserSerializer
     def post(self,request):
         data=request.data
-        uso=self.serializer_class(data=data)
-        print(uso.initial_data)
-        if uso.is_valid():
-            uso.save()
+        uso=UserSerializer(data=data)
+        CustomUser.objects.create_user(**uso.initial_data)
+        return Response(uso.initial_data)
+class user_login(APIView):
+    def post(self,request):
+        data=request.data
         
-            return Response(uso.data)
-    
