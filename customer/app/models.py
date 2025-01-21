@@ -46,4 +46,3 @@ class CustomUser(PermissionsMixin,AbstractBaseUser):
         }
 
 
-
